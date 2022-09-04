@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC TAC TOE</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="shortcut icon" href="./assets/fav.PNG" type="image/x-icon">
+</head>
+<body>
+    <div class="start-button">
+        <h1>TAC</h1>
+        <h5>Coded By: Macs</h5>
+        <button class="button-start">START GAME</button>
+    </div>
+    <div class="select-turn translate-left">
+        <h1>SELECT FIRST TURN</h1>
+        <div class="select-buttons">
+            <button class="button-X"></button>
+            <button class="button-O"></button>
+        </div>
+        <h1 class="rules-title">RULES FOR TIC-TAC-TOE</h1>
+        <h1 class="rules">
+            1. The game is played on a grid that's 3 squares by 3 squares.</br></br>
+            2. Players take turns putting their marks in empty squares.</br></br>
+            3. The first player to get 3 of her marks in a row (up, down, across, or diagonally) is the winner.</br></br>
+            4. When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a draw.</h1>
+    </div>
+    <div class="container zoom-in-fade">
+        <div class="player1Container">
+            <span class="player1Header">Player 1</span>
+            <span class="player1Score">Score</span>
+        </div>
+        <div class="turn-display-container">
+            <div class="turn-display"></div>
+        </div>
+        <div class="player2Container">
+            <span class="player2Header">Player 2</span>
+            <span class="player2Score">Score</span>
+        </div>
+        <table class="table">
+            <tr>
+                <td class="cell"></td>
+                <td class="cell"></td>            
+                <td class="cell"></td>
+            </tr>
+            <tr>
+                <td class="cell"></td>
+                <td class="cell"></td>            
+                <td class="cell"></td>
+            </tr>
+            <tr>
+                <td class="cell"></td>
+                <td class="cell"></td>            
+                <td class="cell"></td>   
+            </tr>
+        </table>
+        <div class="result-container">
+            <h1 class="result"></h1>
+            <button class="continue">Continue Game</button>
+            <div class="result-history">
+                <button class="new-game">New Game</button>
+                <button class="history">View Replay</button>
+            </div>
+        </div>
+        <div class="history-view">
+            <button class="previous hover"><</button>
+            <div class="game-history">
+                <button class="continue-history">Restart</button>
+                <button class="new-game-history">New Game</button>
+            </div>
+            <button class="next disable">></button>
+        </div>
+    </div>
+    <script src=".././src/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,616 @@
+@use 'config';
+
+.start-button{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+    transition: opacity 0.3s, transform 0.3s;
+    user-select: none;
+    z-index: 3;
+
+    h1{
+        font-size: 6rem;
+        color: green;
+        text-shadow: 15px 15px 15px rgba(0,0,0,0.6);
+        
+
+        &::before{
+            content: 'TIC';
+            padding-right: 1rem;
+            color: rgb(196, 108, 67);
+        }
+
+        &::after{
+            content: 'TOE';
+            padding-left: 1rem;
+            color: rgb(100, 120, 209);
+        }
+    }
+
+    h5{
+        font-size: 1.5rem;
+        text-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+
+    }
+
+    button{
+        padding: 1rem;
+        font-size: 2rem;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
+        cursor: pointer;
+        transition: transform 0.1s;    
+        font-family: 'Press Start 2P', cursive;
+        box-shadow: 10px 10px 15px rgba(0,0,0,0.6);
+
+
+        &:hover{
+            transform: scale(1.1);
+        }
+
+        &:active{
+            background: rgb(168, 168, 168);
+        }
+    }
+}
+
+.zoom-out-fade{
+    transform: scale(3);
+    opacity: 0;
+}
+
+.translate-left{
+    opacity: 0;
+    transform: translateX(150rem);
+}
+
+.zoom-in-fade{
+    opacity: 0;
+    transform: scale(5);
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.disable{
+    background-color: rgb(124, 124, 124);
+    pointer-events: none; 
+    cursor:not-allowed;
+}
+
+.hover{
+    background: white;
+    pointer-events: unset;
+    &:hover{
+        background: rgb(173, 171, 171);
+    }
+
+    &:active{
+        background: rgb(124, 124, 124);
+    }
+}
+
+.backlight{
+    &::after{
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.6);
+    }
+}
+
+.whitelight{
+    &::after{
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0);
+        z-index: 1;
+    }
+}
+
+.select-turn{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+    transition: opacity 0.5s ease-in-out,
+                transform 1s cubic-bezier(1,0, 0, 1);
+    user-select: none;
+    z-index: 3;
+    display: none;
+
+    .rules-title{
+        margin-top: 2rem;
+        font-size:  1.5rem;
+        color: white;
+    }
+
+    .rules{
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 1.5rem;
+        text-align: center;
+        width: 40%;
+        color: white;
+        line-height: 1.5rem;
+    }
+
+    &::after{
+        transition: 1s;
+    }
+
+    h1{
+        font-size: 3rem;
+        color: palegreen;
+        transition: color 1s;
+    }
+
+    .select-buttons{
+        display: flex;
+        gap: 2rem;
+
+        .button-X{
+            height: 15rem;
+            width: 13rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            border: none;
+            text-align: center;        
+            position: relative;
+
+            &:active{
+                background: rgb(200, 180, 180);
+            }
+
+            &:focus,
+            &:hover{
+                border: 3px solid red;
+            }
+
+            &::before{
+                content: '';
+                height: 12.5rem;
+                width: 20px;
+                background: red;
+                display: inline-block;
+                transform: rotate(45deg);
+                position: absolute;
+                margin: auto;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                border-radius: 1rem;
+                box-shadow: 15px 5px 15px rgba(0,0,0,0.5);
+            }
+
+            &::after{
+                content: '';
+                height: 12.5rem;
+                width: 20px;
+                background: red;
+                display: inline-block;
+                transform: rotate(-45deg);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border-radius: 1rem;
+                box-shadow: 0px 15px 15px rgba(0,0,0,0.5);
+            }
+        }
+    
+        .button-O{
+            height: 15rem;
+            width: 13rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            border: none;
+            position: relative;
+
+            &:active,
+            &:active::before{
+                background: rgb(188, 188, 241);
+            }
+
+            &:focus,
+            &:hover{
+                border: 3px solid blue;
+            }
+
+            &::before{
+                content: '';
+                height: 7rem;
+                width: 7rem;
+                background: white;
+                position: absolute;
+                bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border-radius: 50%;
+                z-index: 1;
+                box-shadow: inset 15px 15px 15px rgba(0,0,0,0.5);
+            }
+
+            &::after{
+                content: '';
+                height: 10rem;
+                width: 10rem;
+                background: blue;
+                position: absolute;
+                bottom: 0;
+                top: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                border-radius: 50%;
+                box-shadow: 15px 15px 15px rgba(0,0,0,0.5);
+            }
+        }
+    }
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    transition: opacity 1s cubic-bezier(1, 0, 0, 1),
+                transform 1s cubic-bezier(1, 0, 0, 1);
+    display: none;
+    position: relative;
+
+    .history-view{
+        display: none;
+        position: absolute;
+        bottom: 150px;
+        width: 45rem;
+        gap: 1rem;
+        justify-content: space-evenly;
+        user-select: none;
+
+        .game-history{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 2;
+
+            .continue-history{
+                padding: 1rem 3rem;
+                font-size: 1.3rem;
+                cursor: pointer;
+                user-select: none;
+                font-family: 'Press Start 2P', cursive;
+                color: white;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                background: rgb(70, 190, 134);
+    
+                &:hover{
+                    background: rgb(58, 163, 114);
+                }
+    
+                &:active{
+                    background: rgb(51, 141, 99);
+                }
+            }
+    
+            .new-game-history{
+                padding: 0.5rem;
+                font-size: 1rem;
+                width: 10rem;
+                cursor: pointer;
+                user-select: none;
+                font-family: 'Press Start 2P', cursive;
+                color: white;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                background: rgb(240, 146, 146);
+    
+                &:hover{
+                    background: rgb(187, 116, 116);
+                }
+    
+                &:active{
+                    background: rgb(163, 102, 102);
+                }
+            }
+
+
+        }
+
+        .previous{
+            padding: 0.5rem 2rem;
+            z-index: 5;
+            height: 3rem;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 2.3rem;
+        }
+    
+        .next{
+            padding: 0.5rem 2rem;
+            height: 3rem;
+            z-index: 5;
+            cursor: pointer;
+            font-family: 'Press Start 2P', cursive;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 2.3rem;
+        }
+    }
+
+    .player1Container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        position: absolute;
+        left: 300px;
+        top: 100px;
+        color: white;
+        font-size: 2rem;
+        text-shadow: 15px 15px 15px rgba(0,0,0,0.7);
+    }
+
+    .player2Container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        position: absolute;
+        right: 300px;
+        top: 100px;
+        color: white;
+        font-size: 2rem;
+        text-shadow: 15px 15px 15px rgba(0,0,0,0.7);
+    }
+
+    .turn-display-container{
+        display: flex;
+        position: absolute;
+        top: 200px;
+        font-size: 2.5rem;
+        color: white;
+        text-shadow: 15px 15px 15px rgba(0,0,0,0.7);
+
+
+        .turn-display{
+            display: none;
+        }
+    }
+
+    .table{
+        padding: 1rem;
+        border: 10px solid rgb(31, 189, 0);
+        box-shadow: 15px 15px 15px rgba(0,0,0,0.5),
+                    inset 15px 15px 15px rgba(0,0,0,0.1);
+        border-radius: 1rem;
+    
+        .cell{
+            width: 13rem;
+            height: 13rem;
+            background: white;
+            cursor: pointer;
+            position: relative;
+            // box-shadow: inset 15px 15px 15px rgba(0,0,0,0.3),
+            //             inset -15px -15px 15px rgba(250,250,250,0.1);
+
+            &:hover:not(.X):before,
+            &:hover{
+                background: rgb(202, 202, 202);
+            }
+            
+        }
+    }
+
+    .result-container{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 3;
+        gap: 1.5rem;
+        user-select: none;
+        text-align: center;
+        display: none;
+
+
+        .result-history{
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+            .new-game{
+                padding: 0.5rem 1rem;
+                font-size: 1.2rem;
+                cursor: pointer;
+                user-select: none;
+                font-family: 'Press Start 2P', cursive;
+                color: white;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                background: rgb(240, 146, 146);
+    
+                &:hover{
+                    background: rgb(187, 116, 116);
+                }
+    
+                &:active{
+                    background: rgb(163, 102, 102);
+                }
+            }
+    
+            .history{
+                padding: 0.5rem 1rem;
+                font-size: 1.2rem;
+                cursor: pointer;
+                user-select: none;
+                font-family: 'Press Start 2P', cursive;
+                color: white;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+                background: rgb(136, 136, 136);
+    
+                &:hover{
+                    background: rgb(100, 99, 99);
+                }
+    
+                &:active{
+                    background: rgb(163, 102, 102);
+                } 
+            }
+
+        }
+
+        &::before{
+            content: '';
+            position: absolute;
+            background: rgba(0,0,0,0.7);
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+        }
+
+        .result{
+            color: rgb(255, 255, 255);
+            font-size: 4rem;
+        }
+
+        .continue{
+            padding: 1rem 3.5rem;
+            font-size: 1.7rem;
+            cursor: pointer;
+            user-select: none;
+            font-family: 'Press Start 2P', cursive;
+            color: white;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background: rgb(70, 190, 134);
+
+            &:hover{
+                background: rgb(58, 163, 114);
+            }
+
+            &:active{
+                background: rgb(51, 141, 99);
+            }
+        }
+
+        
+    }
+}
+
+.X{
+    &::before{
+        content: '';
+        height: 12rem;
+        width: 20px;
+        display: inline-block;
+        transform: rotate(45deg);
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: red;
+        box-shadow: 15px 5px 15px rgba(0,0,0,0.5);
+        border-radius: 1rem;
+    }
+
+    &::after{
+        content: '';
+        height: 12rem;
+        width: 20px;
+        display: inline-block;
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: red;
+        box-shadow: 0px 15px 15px rgba(0,0,0,0.5);
+        border-radius: 1rem;
+    }
+}
+
+.O{
+    &::before{
+        content: '';
+        height: 7rem;
+        width: 7rem;
+        background: white;
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border-radius: 50%;
+        z-index: 1;
+        box-shadow: inset 15px 15px 15px rgba(0,0,0,0.5);
+    }
+
+    &::after{
+        content: '';
+        height: 10rem;
+        width: 10rem;
+        background: blue;
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        box-shadow: 15px 15px 15px rgba(0,0,0,0.5);
+        border-radius: 50%;
+    }
+}

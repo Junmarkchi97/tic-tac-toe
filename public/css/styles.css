@@ -1,0 +1,550 @@
+@import url("https://fonts.googleapis.com/css2?family=Blaka&family=Press+Start+2P&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Press Start 2P", cursive;
+  overflow: hidden;
+  background: linear-gradient(to bottom, rgb(80, 80, 80), rgb(110, 110, 110));
+}
+
+.start-button {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+  transition: opacity 0.3s, transform 0.3s;
+  user-select: none;
+  z-index: 3;
+}
+.start-button h1 {
+  font-size: 6rem;
+  color: green;
+  text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.6);
+}
+.start-button h1::before {
+  content: "TIC";
+  padding-right: 1rem;
+  color: rgb(196, 108, 67);
+}
+.start-button h1::after {
+  content: "TOE";
+  padding-left: 1rem;
+  color: rgb(100, 120, 209);
+}
+.start-button h5 {
+  font-size: 1.5rem;
+  text-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+.start-button button {
+  padding: 1rem;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  transition: transform 0.1s;
+  font-family: "Press Start 2P", cursive;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.6);
+}
+.start-button button:hover {
+  transform: scale(1.1);
+}
+.start-button button:active {
+  background: rgb(168, 168, 168);
+}
+
+.zoom-out-fade {
+  transform: scale(3);
+  opacity: 0;
+}
+
+.translate-left {
+  opacity: 0;
+  transform: translateX(150rem);
+}
+
+.zoom-in-fade {
+  opacity: 0;
+  transform: scale(5);
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.disable {
+  background-color: rgb(124, 124, 124);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.hover {
+  background: white;
+  pointer-events: unset;
+}
+.hover:hover {
+  background: rgb(173, 171, 171);
+}
+.hover:active {
+  background: rgb(124, 124, 124);
+}
+
+.backlight::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.whitelight::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 1;
+}
+
+.select-turn {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  transition: opacity 0.5s ease-in-out, transform 1s cubic-bezier(1, 0, 0, 1);
+  user-select: none;
+  z-index: 3;
+  display: none;
+}
+.select-turn .rules-title {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: white;
+}
+.select-turn .rules {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 40%;
+  color: white;
+  line-height: 1.5rem;
+}
+.select-turn::after {
+  transition: 1s;
+}
+.select-turn h1 {
+  font-size: 3rem;
+  color: palegreen;
+  transition: color 1s;
+}
+.select-turn .select-buttons {
+  display: flex;
+  gap: 2rem;
+}
+.select-turn .select-buttons .button-X {
+  height: 15rem;
+  width: 13rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  position: relative;
+}
+.select-turn .select-buttons .button-X:active {
+  background: rgb(200, 180, 180);
+}
+.select-turn .select-buttons .button-X:focus, .select-turn .select-buttons .button-X:hover {
+  border: 3px solid red;
+}
+.select-turn .select-buttons .button-X::before {
+  content: "";
+  height: 12.5rem;
+  width: 20px;
+  background: red;
+  display: inline-block;
+  transform: rotate(45deg);
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 1rem;
+  box-shadow: 15px 5px 15px rgba(0, 0, 0, 0.5);
+}
+.select-turn .select-buttons .button-X::after {
+  content: "";
+  height: 12.5rem;
+  width: 20px;
+  background: red;
+  display: inline-block;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 1rem;
+  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.5);
+}
+.select-turn .select-buttons .button-O {
+  height: 15rem;
+  width: 13rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  border: none;
+  position: relative;
+}
+.select-turn .select-buttons .button-O:active, .select-turn .select-buttons .button-O:active::before {
+  background: rgb(188, 188, 241);
+}
+.select-turn .select-buttons .button-O:focus, .select-turn .select-buttons .button-O:hover {
+  border: 3px solid blue;
+}
+.select-turn .select-buttons .button-O::before {
+  content: "";
+  height: 7rem;
+  width: 7rem;
+  background: white;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: inset 15px 15px 15px rgba(0, 0, 0, 0.5);
+}
+.select-turn .select-buttons .button-O::after {
+  content: "";
+  height: 10rem;
+  width: 10rem;
+  background: blue;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  transition: opacity 1s cubic-bezier(1, 0, 0, 1), transform 1s cubic-bezier(1, 0, 0, 1);
+  display: none;
+  position: relative;
+}
+.container .history-view {
+  display: none;
+  position: absolute;
+  bottom: 150px;
+  width: 45rem;
+  gap: 1rem;
+  justify-content: space-evenly;
+  user-select: none;
+}
+.container .history-view .game-history {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 2;
+}
+.container .history-view .game-history .continue-history {
+  padding: 1rem 3rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: rgb(70, 190, 134);
+}
+.container .history-view .game-history .continue-history:hover {
+  background: rgb(58, 163, 114);
+}
+.container .history-view .game-history .continue-history:active {
+  background: rgb(51, 141, 99);
+}
+.container .history-view .game-history .new-game-history {
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 10rem;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: rgb(240, 146, 146);
+}
+.container .history-view .game-history .new-game-history:hover {
+  background: rgb(187, 116, 116);
+}
+.container .history-view .game-history .new-game-history:active {
+  background: rgb(163, 102, 102);
+}
+.container .history-view .previous {
+  padding: 0.5rem 2rem;
+  z-index: 5;
+  height: 3rem;
+  cursor: pointer;
+  font-family: "Press Start 2P", cursive;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 2.3rem;
+}
+.container .history-view .next {
+  padding: 0.5rem 2rem;
+  height: 3rem;
+  z-index: 5;
+  cursor: pointer;
+  font-family: "Press Start 2P", cursive;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 2.3rem;
+}
+.container .player1Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: absolute;
+  left: 300px;
+  top: 100px;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.7);
+}
+.container .player2Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  position: absolute;
+  right: 300px;
+  top: 100px;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.7);
+}
+.container .turn-display-container {
+  display: flex;
+  position: absolute;
+  top: 200px;
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 15px 15px 15px rgba(0, 0, 0, 0.7);
+}
+.container .turn-display-container .turn-display {
+  display: none;
+}
+.container .table {
+  padding: 1rem;
+  border: 10px solid rgb(31, 189, 0);
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5), inset 15px 15px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+}
+.container .table .cell {
+  width: 13rem;
+  height: 13rem;
+  background: white;
+  cursor: pointer;
+  position: relative;
+}
+.container .table .cell:hover:not(.X):before, .container .table .cell:hover {
+  background: rgb(202, 202, 202);
+}
+.container .result-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 3;
+  gap: 1.5rem;
+  user-select: none;
+  text-align: center;
+  display: none;
+}
+.container .result-container .result-history {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.container .result-container .result-history .new-game {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: rgb(240, 146, 146);
+}
+.container .result-container .result-history .new-game:hover {
+  background: rgb(187, 116, 116);
+}
+.container .result-container .result-history .new-game:active {
+  background: rgb(163, 102, 102);
+}
+.container .result-container .result-history .history {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: rgb(136, 136, 136);
+}
+.container .result-container .result-history .history:hover {
+  background: rgb(100, 99, 99);
+}
+.container .result-container .result-history .history:active {
+  background: rgb(163, 102, 102);
+}
+.container .result-container::before {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+.container .result-container .result {
+  color: rgb(255, 255, 255);
+  font-size: 4rem;
+}
+.container .result-container .continue {
+  padding: 1rem 3.5rem;
+  font-size: 1.7rem;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: rgb(70, 190, 134);
+}
+.container .result-container .continue:hover {
+  background: rgb(58, 163, 114);
+}
+.container .result-container .continue:active {
+  background: rgb(51, 141, 99);
+}
+
+.X::before {
+  content: "";
+  height: 12rem;
+  width: 20px;
+  display: inline-block;
+  transform: rotate(45deg);
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: red;
+  box-shadow: 15px 5px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+}
+.X::after {
+  content: "";
+  height: 12rem;
+  width: 20px;
+  display: inline-block;
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: red;
+  box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+}
+
+.O::before {
+  content: "";
+  height: 7rem;
+  width: 7rem;
+  background: white;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: inset 15px 15px 15px rgba(0, 0, 0, 0.5);
+}
+.O::after {
+  content: "";
+  height: 10rem;
+  width: 10rem;
+  background: blue;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=styles.css.map */
