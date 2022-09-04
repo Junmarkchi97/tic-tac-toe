@@ -383,10 +383,14 @@ body {
   border: 10px solid rgb(31, 189, 0);
   box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.5), inset 15px 15px 15px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
+  max-height: 50vmin;
+  height: 40rem;
+  width: 40rem;
+  max-width: 50vmin;
 }
 .container .table .cell {
-  width: 13rem;
-  height: 13rem;
+  width: auto;
+  height: auto;
   background: white;
   cursor: pointer;
   position: relative;
@@ -486,7 +490,9 @@ body {
 
 .X::before {
   content: "";
+  max-height: 12vmin;
   height: 12rem;
+  max-width: 1.5vmin;
   width: 20px;
   display: inline-block;
   transform: rotate(45deg);
@@ -502,7 +508,9 @@ body {
 }
 .X::after {
   content: "";
+  max-height: 12vmin;
   height: 12rem;
+  max-width: 1.5vmin;
   width: 20px;
   display: inline-block;
   transform: rotate(-45deg);
@@ -519,8 +527,10 @@ body {
 
 .O::before {
   content: "";
+  max-height: 7vmin;
   height: 7rem;
   width: 7rem;
+  max-width: 7vmin;
   background: white;
   position: absolute;
   bottom: 0;
@@ -534,8 +544,10 @@ body {
 }
 .O::after {
   content: "";
+  max-height: 10vmin;
   height: 10rem;
   width: 10rem;
+  max-width: 10vmin;
   background: blue;
   position: absolute;
   bottom: 0;
